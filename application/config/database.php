@@ -73,12 +73,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+
+// 1 for development
+// 2 for production 
+
+$db_option = 1; 
+
+switch ($db_option) {
+	case 1:
+		$dbhost = "localhost";
+		$dbuser = "root";
+		$dbpass = "";
+		$dbname = "ci_rest_api";
+		break;
+	
+	case 2:
+		$dbhost = "";
+		$dbuser = "";
+		$dbpass = "";
+		break;
+	
+	default:
+		$dbhost = "";
+		$dbuser = "";
+		$dbpass = "";
+		break;
+}
+
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => $dbhost,
+	'username' => $dbuser,
+	'password' => $dbpass,
+	'database' => $dbname,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
